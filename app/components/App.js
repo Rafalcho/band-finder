@@ -1,10 +1,11 @@
 import React from 'react';
+import FindBand from './FindBand';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        Everything works
+      <div className='container'>
+        <FindBand />
       </div>
     );
   }
