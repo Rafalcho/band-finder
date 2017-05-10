@@ -1,5 +1,5 @@
 export const artistSearch = (artist) => {
-  // const artistString = [...artist].join('%20');
+
   const url = `https://api.spotify.com/v1/search?q=${artist}&type=artist`;
   const searchFetch = fetch(url);
 
@@ -7,12 +7,35 @@ export const artistSearch = (artist) => {
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error('Fetching failed');
+      throw new Error('Fetching artist failed');
     }
   })
   .then(response => {
-    console.log(response.artists.items[0]);
+
     return response.artists.items[0];
+
+  })
+  .catch(error => {
+    console.log('Fetching data error:', error);
+  });
+
+};
+
+export const getAlbums = (artistId) => {
+
+  const url = `https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&market=PL`;
+  const albumsFetch = fetch(url);
+
+  return albumsFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching album failed');
+    }
+  })
+  .then(response => {
+
+    return response.items;
 
   })
   .catch(error => {

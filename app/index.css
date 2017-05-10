@@ -13,3 +13,20 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.band-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.albums-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.album-item {
+  margin: 10px;
+  text-align: center;
+}

@@ -9,6 +9,7 @@ class FindBand extends React.Component {
     this.state = {
       artist: '',
       bandObject : null,
+      id: null,
     };
   }
 
@@ -20,12 +21,15 @@ class FindBand extends React.Component {
   };
 
   handleSubmit = (artist) => {
-    const response = artistSearch(artist).then(
+    const artistResponse = artistSearch(artist).then(
       data => {
         this.setState({
-          bandObject: data
+          bandObject: data,
+          id: data.id,
         })
+
       }
+
     )
 
 
@@ -42,7 +46,8 @@ class FindBand extends React.Component {
           onChange={this.handleChange}/>
         <button onClick={() => this.handleSubmit(this.state.artist)}>Go!</button>
 
-{this.state.bandObject ? <BandPage band={this.state.bandObject}/> : null}
+{this.state.bandObject ? <BandPage
+  band={this.state.bandObject}/> : null}
       </div>
     );
   }
