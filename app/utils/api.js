@@ -43,3 +43,24 @@ export const getAlbums = (artistId) => {
   });
 
 };
+
+export const getSimilarArtists = (artistId) => {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/related-artists`;
+  const similarFetch = fetch(url);
+
+  return similarFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching similar artists failed');
+    }
+  })
+  .then(response => {
+
+      return response.artists;
+
+    })
+  .catch(error => {
+      console.log('Fetching data error:', error);
+    });
+};

@@ -30,3 +30,14 @@ body {
   margin: 10px;
   text-align: center;
 }
+
+.similar-artist {
+  text-align: center;
+  margin: 5px;
+}
+
+.similar-artist img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
