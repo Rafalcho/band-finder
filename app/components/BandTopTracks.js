@@ -3,7 +3,7 @@ import React from 'react';
 class BandTopTracks extends React.Component {
   render() {
     return (
-      <ul>
+      <ul className='top-tracks'>
       {  this.props.tracks.map(track => {
           return (
             <li key={track.id}>

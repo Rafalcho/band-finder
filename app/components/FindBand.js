@@ -38,16 +38,22 @@ class FindBand extends React.Component {
 
   render() {
     return (
+    <div>
+
+
       <div className='search-container'>
         <h1>Find your favourite band or artist</h1>
         <input
           type='text'
           value={this.state.artist}
-          onChange={this.handleChange}/>
-        <button onClick={() => this.handleSubmit(this.state.artist)}>Go!</button>
+          onChange={this.handleChange}
+          id='searchbox'/>
+        <button onClick={() => this.handleSubmit(this.state.artist)}>Find!</button>
+        </div>
 
-{this.state.bandObject ? <BandPage
-  band={this.state.bandObject}/> : null}
+        {this.state.bandObject ?
+          <BandPage band={this.state.bandObject}/> : null }
+
       </div>
     );
   }

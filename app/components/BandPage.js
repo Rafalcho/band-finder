@@ -51,7 +51,7 @@ class BandPage extends React.Component {
         {!this.state.tracks ? null : <BandTopTracks tracks={this.state.tracks} />}
 
         <h3>Albums</h3>
-        <BandAlbums albums={this.state.albums} />
+        {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
 
 
         <button

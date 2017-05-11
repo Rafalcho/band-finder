@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
@@ -12,12 +13,59 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  /*background-image: url('http://i.imgur.com/X0EX9cf.jpg');*/
+  background-position: center;
+  background-size: cover;
+
+}
+
+.search-container h1 {
+  margin: 150px 0 20px 0;
+}
+
+.search-container button {
+  margin-top: 20px;
+  font-size: 30px;
+  padding: 5px;
+  width: 100px;
+}
+
+#searchbox {
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  font-size: 36px
 }
 
 .band-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.band-picture {
+  width: 100%;
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1%;
+
+
+}
+
+.band-picture h2 {
+  color: white;
+  font-size: 5rem;
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px 1px black;
+  /*background-image: linear-gradient(bottom, black, lightgrey)*/
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .albums-row {
@@ -45,4 +93,8 @@ body {
   border-radius: 50%;
   height: 200px;
   width: 200px;
+}
+
+.top-tracks {
+  list-style: none;
 }
