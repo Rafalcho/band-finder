@@ -1,5 +1,6 @@
 import React from 'react';
-import {getAlbums, getSimilarArtists} from '../utils/api';
+import {getAlbums, getSimilarArtists, getTopTracs} from '../utils/api';
+import BandAlbums from './BandAlbums';
 
 class BandPage extends React.Component {
   constructor(props) {
@@ -7,10 +8,19 @@ class BandPage extends React.Component {
     this.state = {
       albums: null,
       similar: null,
+      tracks: null,
     };
   }
 
   componentDidMount() {
+
+    const topTracksPromise = getTopTracs(this.props.band.id).then(data => {
+      console.log(data);
+      this.setState({
+        tracks: data,
+      })
+    })
+
     const albumsPromise = getAlbums(this.props.band.id).then(data => {
       this.setState({
         albums: data,
@@ -28,7 +38,7 @@ class BandPage extends React.Component {
 
   render() {
     const name = this.props.band.name;
-    const image = this.props.band.images[1].url;
+    const image = this.props.band.images[0].url;
     const genres = this.props.band.genres.join(', ');
 
     return (
@@ -36,20 +46,20 @@ class BandPage extends React.Component {
         <h2>{name}</h2>
         <img src={image} />
         <p>Genres: {genres}</p>
+        <ul>
+        {  !this.state.tracks ? null : this.state.tracks.map(track => {
+            return (
+              <li key={track.id}>
+                <img src={track.album.images[2].url} />
+                {track.name}
+              </li>
+            )
+          })}
+        </ul>
         <h3>Albums</h3>
-        <div className='albums-row'>
+        <BandAlbums albums={this.state.albums} />
 
 
-        {this.state.albums ? this.state.albums.map(album => {
-
-          return (
-            <div className='album-item'>
-              <img src={album.images[1].url} />
-              <p>{album.name}</p>
-            </div>
-          );
-        }) : null}
-        </div>
         <button
           onClick={() => this.handleGetSimilarClick(this.props.band.id)}>
           Show similar artists
@@ -57,7 +67,7 @@ class BandPage extends React.Component {
         <div className='albums-row'>
       {  !this.state.similar ? null : this.state.similar.map(artist => {
         return (
-          <div className='similar-artist'>
+          <div className='similar-artist' key={artist.id}>
             <img src={artist.images[1].url}></img>
             <p>{artist.name}</p>
           </div>

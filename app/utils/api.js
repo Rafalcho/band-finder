@@ -64,3 +64,24 @@ export const getSimilarArtists = (artistId) => {
       console.log('Fetching data error:', error);
     });
 };
+
+export const getTopTracs = (artistId) => {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`;
+  const topTracksFetch = fetch(url);
+
+  return topTracksFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching top tracks failed');
+    }
+  })
+  .then(response => {
+
+      return response.tracks;
+
+    })
+  .catch(error => {
+      console.log('Fetching data error:', error);
+    });
+};

@@ -27,8 +27,13 @@ body {
 }
 
 .album-item {
-  margin: 10px;
+  margin: 5px;
   text-align: center;
+  max-width: 250px;
+}
+
+.album-item img {
+  max-width: 250px;
 }
 
 .similar-artist {
