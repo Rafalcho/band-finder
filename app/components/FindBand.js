@@ -41,7 +41,7 @@ class FindBand extends React.Component {
     <div>
 
 
-      <div className='search-container'>
+      <div className='search-container' style={{backgroundImage:`url('http://i.imgur.com/X0EX9cf.jpg')`}}>
         <h1>Find your favourite band or artist</h1>
         <input
           type='text'
