@@ -38,13 +38,22 @@ class BandPage extends React.Component {
       });
     };
 
+    componentWillUnmount() {
+      this.setState({
+        albums: null,
+        similar: null,
+        tracks: null,
+      })
+
+    }
+
   render() {
     const name = this.props.band.name;
     const image = this.props.band.images[0].url;
     const genres = this.props.band.genres;
 
     return (
-      <div className='band-container'>
+      <div className='band-container' >
         <BandOverview name={name} image={image} genres={genres} />
 
         <h3>Top tracks</h3>

@@ -21,34 +21,37 @@ class FindBand extends React.Component {
   };
 
   handleSubmit = (artist) => {
+    this.setState({
+      artist: '',
+      bandObject : null,
+      id: null,
+    })
     const artistResponse = artistSearch(artist).then(
       data => {
         this.setState({
           bandObject: data,
           id: data.id,
         })
-
       }
-
     )
-
-
-
   }
+
+
 
   render() {
     return (
     <div>
 
 
-      <div className='search-container' style={{backgroundImage:`url('http://i.imgur.com/X0EX9cf.jpg')`}}>
+      <div className='search-container' >
         <h1>Find your favourite band or artist</h1>
         <input
           type='text'
           value={this.state.artist}
           onChange={this.handleChange}
           id='searchbox'/>
-        <button onClick={() => this.handleSubmit(this.state.artist)}>Find!</button>
+        <button onClick={() => this.handleSubmit(this.state.artist)}>
+          Find!</button>
         </div>
 
         {this.state.bandObject ?
