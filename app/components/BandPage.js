@@ -1,6 +1,8 @@
 import React from 'react';
 import {getAlbums, getSimilarArtists, getTopTracs} from '../utils/api';
 import BandAlbums from './BandAlbums';
+import BandTopTracks from './BandTopTracks';
+import BandOverview from './BandOverview';
 
 class BandPage extends React.Component {
   constructor(props) {
@@ -43,19 +45,11 @@ class BandPage extends React.Component {
 
     return (
       <div className='band-container'>
-        <h2>{name}</h2>
-        <img src={image} />
-        <p>Genres: {genres}</p>
-        <ul>
-        {  !this.state.tracks ? null : this.state.tracks.map(track => {
-            return (
-              <li key={track.id}>
-                <img src={track.album.images[2].url} />
-                {track.name}
-              </li>
-            )
-          })}
-        </ul>
+        <BandOverview name={name} image={image} genres={genres} />
+
+        <h3>Top tracks</h3>
+        {!this.state.tracks ? null : <BandTopTracks tracks={this.state.tracks} />}
+
         <h3>Albums</h3>
         <BandAlbums albums={this.state.albums} />
 
