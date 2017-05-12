@@ -18,7 +18,7 @@ class BandPage extends React.Component {
   componentDidMount() {
 
     const topTracksPromise = getTopTracs(this.props.band.id).then(data => {
-      console.log(data);
+
       this.setState({
         tracks: data,
       })

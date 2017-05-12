@@ -2,7 +2,7 @@ import React from 'react';
 
 const BandOverview = (props) => {
   const genres = props.genres.map(genre => {
-    return <span className='genre'>{genre}</span>;
+    return <span key={genre} className='genre'>{genre}</span>;
   });
   return (
     <div>
@@ -11,7 +11,7 @@ const BandOverview = (props) => {
         <h2>{props.name}</h2>
       </div>
       <div className='genres'>
-        
+
         {genres}
       </div>
 

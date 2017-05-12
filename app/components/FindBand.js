@@ -1,6 +1,7 @@
 import React from 'react';
 import {artistSearch, randomArtistSearch} from '../utils/api';
-import BandPage from './BandPage'
+import BandPage from './BandPage';
+import Loading from './Loading';
 
 
 class FindBand extends React.Component {
@@ -11,7 +12,8 @@ class FindBand extends React.Component {
       bandObject : null,
       id: null,
       hideSearch: false,
-      
+      loading: false,
+
     };
   }
 
@@ -24,9 +26,7 @@ class FindBand extends React.Component {
 
   handleSubmit = (artist) => {
     this.setState({
-      artist: '',
-      bandObject : null,
-      id: null,
+      loading: true,
     })
 
     const artistResponse = artistSearch(artist).then(
@@ -35,6 +35,7 @@ class FindBand extends React.Component {
           bandObject: data,
           id: data.id,
           hideSearch: true,
+          loading: false,
         })
       }
     )
@@ -50,11 +51,17 @@ class FindBand extends React.Component {
   };
 
 handleRandom = () => {
+  this.setState({
+    loading: true,
+    hideSearch: true,
+  })
+
   randomArtistSearch().then(data => {
     this.setState({
       bandObject: data,
       id: data.id,
       hideSearch: true,
+      loading: false,
     })
   })
 }
@@ -86,8 +93,12 @@ handleRandom = () => {
 
       </div>}
 
+      {this.state.loading ? <Loading /> : null}
+
         {this.state.bandObject ?
           <BandPage band={this.state.bandObject}/> : null }
+
+
 
       </div>
     );

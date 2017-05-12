@@ -129,6 +129,7 @@ body {
   margin: 5px;
   text-align: center;
   max-width: 250px;
+  cursor: pointer;
 }
 
 .album-item:hover {
@@ -162,6 +163,11 @@ body {
 .similar-artist {
   text-align: center;
   margin: 5px;
+  cursor: pointer;
+}
+
+.similar-artist:hover {
+  color: #D9042B;
 }
 
 .similar-image {
@@ -207,4 +213,10 @@ body {
   color: #D9042B;
   background-color: white;
   cursor: pointer;
+}
+
+.loading {
+  text-align: center;
+  font-size: 50px;
+
 }
