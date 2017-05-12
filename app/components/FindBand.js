@@ -27,6 +27,7 @@ class FindBand extends React.Component {
   handleSubmit = (artist) => {
     this.setState({
       loading: true,
+      hideSearch: true,
     })
 
     const artistResponse = artistSearch(artist).then(
