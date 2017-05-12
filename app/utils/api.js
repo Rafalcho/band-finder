@@ -85,3 +85,27 @@ export const getTopTracs = (artistId) => {
       console.log('Fetching data error:', error);
     });
 };
+
+export const randomArtistSearch = () => {
+  const year = Math.floor(Math.random() * (2016 - 1960 + 1) + 1960);
+  const offset = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+
+  const url = `https://api.spotify.com/v1/search?q=year:${year}&type=artist&limit=1&offset=${offset}`;
+  const searchFetch = fetch(url);
+
+  return searchFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching artist failed');
+    }
+  })
+  .then(response => {
+    return response.artists.items[0];
+
+  })
+  .catch(error => {
+    console.log('Fetching data error:', error);
+  });
+
+};

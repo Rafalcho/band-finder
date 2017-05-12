@@ -1,5 +1,5 @@
 import React from 'react';
-import {artistSearch} from '../utils/api';
+import {artistSearch, randomArtistSearch} from '../utils/api';
 import BandPage from './BandPage'
 
 
@@ -48,6 +48,15 @@ class FindBand extends React.Component {
     })
   };
 
+handleRandom = () => {
+  randomArtistSearch().then(data => {
+    this.setState({
+      bandObject: data,
+      id: data.id,
+      hideSearch: true,
+    })
+  })
+}
 
 
   render() {
@@ -64,8 +73,16 @@ class FindBand extends React.Component {
           value={this.state.artist}
           onChange={this.handleChange}
           id='searchbox'/>
-        <button onClick={() => this.handleSubmit(this.state.artist)}>
-          Find!</button>
+        <div className='search-button' onClick={() => this.handleSubmit(this.state.artist)}>
+          Find!</div>
+
+        <div className='random-box'>
+          <p>Don't have favourite band?</p>
+          <div onClick={this.handleRandom} className='random-search'>Search for a random artist</div>
+        </div>
+
+
+
       </div>}
 
         {this.state.bandObject ?
