@@ -11,6 +11,7 @@ class FindBand extends React.Component {
       bandObject : null,
       id: null,
       hideSearch: false,
+      
     };
   }
 

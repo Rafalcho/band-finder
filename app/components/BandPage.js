@@ -11,6 +11,7 @@ class BandPage extends React.Component {
       albums: null,
       similar: null,
       tracks: null,
+      similarShown: false,
     };
   }
 
@@ -34,6 +35,7 @@ class BandPage extends React.Component {
       const similarPromise = getSimilarArtists(this.props.band.id).then(data => {
         this.setState({
           similar: data,
+          similarShown: true,
         });
       });
     };
@@ -63,10 +65,10 @@ class BandPage extends React.Component {
         {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
 
         <h3>Want to hear something similar?</h3>
-        <div className='show-more similar'
+        {this.state.similarShown ? null : <div className='show-more similar'
           onClick={() => this.handleGetSimilarClick(this.props.band.id)}>
           Show similar artists
-        </div>
+        </div>}
         <div className='albums-row'>
       {  !this.state.similar ? null : this.state.similar.map(artist => {
         return (
