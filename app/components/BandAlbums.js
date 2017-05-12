@@ -41,7 +41,7 @@ componentDidMount() {
 
 
       </div>
-      {this.state.index >= 20 ? null : <div
+      {this.state.index >= this.props.albums.length ? null : <div
         onClick={this.getMoreAlbums}
         className='show-more' >Show more albums</div>}
 </div>

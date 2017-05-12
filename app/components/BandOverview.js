@@ -11,7 +11,7 @@ const BandOverview = (props) => {
         <h2>{props.name}</h2>
       </div>
       <div className='genres'>
-        <p>Genres: </p>
+        
         {genres}
       </div>
 
