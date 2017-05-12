@@ -62,16 +62,18 @@ class BandPage extends React.Component {
         <h3>Albums</h3>
         {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
 
-
-        <button
+        <h3>Want to hear something similar?</h3>
+        <div className='show-more similar'
           onClick={() => this.handleGetSimilarClick(this.props.band.id)}>
           Show similar artists
-        </button>
+        </div>
         <div className='albums-row'>
       {  !this.state.similar ? null : this.state.similar.map(artist => {
         return (
           <div className='similar-artist' key={artist.id}>
-            <img src={artist.images[1].url}></img>
+
+            <div className='similar-image'
+              style={{backgroundImage: `url('${artist.images[1].url}')`}}></div>
             <p>{artist.name}</p>
           </div>
         )
@@ -81,5 +83,6 @@ class BandPage extends React.Component {
     );
   }
 }
+
 
 export default BandPage;

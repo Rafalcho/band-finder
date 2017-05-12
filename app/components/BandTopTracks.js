@@ -1,16 +1,19 @@
 import React from 'react';
 
 class BandTopTracks extends React.Component {
+
   render() {
+    let number = 1;
     return (
       <ul className='top-tracks'>
-      {  this.props.tracks.map(track => {
+      {  this.props.tracks.map((track, index) => {
           return (
             <li key={track.id}>
-              <img src={track.album.images[2].url} />
+              #{index + 1} { }
               {track.name}
             </li>
           );
+
         })}
       </ul>
     );

@@ -23,7 +23,7 @@ componentDidMount() {
 
   render() {
     return (
-      <div>
+      <div className='albums-section'>
 
 
       <div className='albums-row'>
@@ -41,7 +41,9 @@ componentDidMount() {
 
 
       </div>
-      {this.state.index >= 20 ? null : <button onClick={this.getMoreAlbums}>Show more</button>}
+      {this.state.index >= 20 ? null : <div
+        onClick={this.getMoreAlbums}
+        className='show-more' >Show more albums</div>}
 </div>
     );
   }
