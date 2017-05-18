@@ -3,15 +3,14 @@ import {getAlbums, getSimilarArtists, getTopTracs} from '../utils/api';
 import BandAlbums from './BandAlbums';
 import BandTopTracks from './BandTopTracks';
 import BandOverview from './BandOverview';
+import SimilarArtists from './SimilarArtists';
 
 class BandPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       albums: null,
-      similar: null,
       tracks: null,
-      similarShown: false,
     };
   }
 
@@ -21,8 +20,8 @@ class BandPage extends React.Component {
 
       this.setState({
         tracks: data,
-      })
-    })
+      });
+    });
 
     const albumsPromise = getAlbums(this.props.band.id).then(data => {
       this.setState({
@@ -31,23 +30,14 @@ class BandPage extends React.Component {
     });
   }
 
-  handleGetSimilarClick = (id) => {
-      const similarPromise = getSimilarArtists(this.props.band.id).then(data => {
-        this.setState({
-          similar: data,
-          similarShown: true,
-        });
-      });
-    };
+  componentWillUnmount() {
+    this.setState({
+      albums: null,
+      similar: null,
+      tracks: null,
+    });
 
-    componentWillUnmount() {
-      this.setState({
-        albums: null,
-        similar: null,
-        tracks: null,
-      })
-
-    }
+  }
 
   render() {
     const name = this.props.band.name;
@@ -65,26 +55,10 @@ class BandPage extends React.Component {
         {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
 
         <h3>Want to hear something similar?</h3>
-        {this.state.similarShown ? null : <div className='show-more similar'
-          onClick={() => this.handleGetSimilarClick(this.props.band.id)}>
-          Show similar artists
-        </div>}
-        <div className='albums-row'>
-      {  !this.state.similar ? null : this.state.similar.map(artist => {
-        return (
-          <div className='similar-artist' key={artist.id}>
-
-            <div className='similar-image'
-              style={{backgroundImage: `url('${artist.images[1].url}')`}}></div>
-            <p>{artist.name}</p>
-          </div>
-        )
-      })}
-      </div>
+        <SimilarArtists id={this.props.band.id}/>
       </div>
     );
   }
 }
-
 
 export default BandPage;
