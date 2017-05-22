@@ -69,7 +69,7 @@ getArtstFromSimilarArtist = (artistId) => {
         id: artistId,
       });
 
-
+      scroll(0,0);
     })
   };
 
