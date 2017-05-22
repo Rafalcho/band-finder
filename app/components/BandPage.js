@@ -11,19 +11,20 @@ class BandPage extends React.Component {
     this.state = {
       albums: null,
       tracks: null,
+      band: this.props.band,
     };
   }
 
   componentDidMount() {
 
-    const topTracksPromise = getTopTracs(this.props.band.id).then(data => {
+    const topTracksPromise = getTopTracs(this.state.band.id).then(data => {
 
       this.setState({
         tracks: data,
       });
     });
 
-    const albumsPromise = getAlbums(this.props.band.id).then(data => {
+    const albumsPromise = getAlbums(this.state.band.id).then(data => {
       this.setState({
         albums: data,
       });
@@ -40,9 +41,9 @@ class BandPage extends React.Component {
   }
 
   render() {
-    const name = this.props.band.name;
-    const image = this.props.band.images[0].url;
-    const genres = this.props.band.genres;
+    const name = this.state.band.name;
+    const image = this.state.band.images[0].url;
+    const genres = this.state.band.genres;
 
     return (
       <div className='band-container' >
@@ -55,7 +56,7 @@ class BandPage extends React.Component {
         {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
 
         <h3>Want to hear something similar?</h3>
-        <SimilarArtists id={this.props.band.id}/>
+        <SimilarArtists id={this.state.band.id}/>
       </div>
     );
   }

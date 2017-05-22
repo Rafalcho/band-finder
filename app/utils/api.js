@@ -21,6 +21,27 @@ export const artistSearch = (artist) => {
 
 };
 
+export const getArtist = (artistId) => {
+  const url = `https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF${artistId}`;
+  const artistFetch = fetch(url);
+
+  return artistFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching artist failed');
+    }
+  })
+  .then(response => {
+    console.log(response.items);
+    return response.items;
+
+  })
+  .catch(error => {
+    console.log('Fetching data error:', error);
+  });
+};
+
 export const getAlbums = (artistId) => {
 
   const url = `https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&market=PL`;
