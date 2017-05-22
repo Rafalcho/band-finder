@@ -1,4 +1,5 @@
 import React from 'react';
+import Album from './Album';
 
 class BandAlbums extends React.Component {
   constructor(props) {
@@ -6,6 +7,7 @@ class BandAlbums extends React.Component {
     this.state = {
       albumsToShow: null,
       index: 0,
+      currentAlbum: null,
     }
   }
 
@@ -21,6 +23,10 @@ componentDidMount() {
   this.getMoreAlbums();
 }
 
+handleClick = (id) => {
+  this.setState({ currentAlbum: id})
+}
+
   render() {
     return (
       <div className='albums-section'>
@@ -32,7 +38,10 @@ componentDidMount() {
       {this.state.albumsToShow ? this.state.albumsToShow.map(album => {
 
         return (
-          <div className='album-item' key={album.id}>
+          <div
+            className='album-item'
+            key={album.id}
+            onClick={() => this.handleClick(album.id)}>
             <img src={album.images[1].url} />
             <p>{album.name}</p>
           </div>
@@ -44,6 +53,7 @@ componentDidMount() {
       {this.state.index >= this.props.albums.length ? null : <div
         onClick={this.getMoreAlbums}
         className='show-more' >Show more albums</div>}
+        {this.state.currentAlbum ? <Album id={this.state.currentAlbum} /> : null}
 </div>
     );
   }
