@@ -41,6 +41,52 @@ export const getArtist = (artistId) => {
   });
 };
 
+export const getAlbum = (albumId) => {
+
+  const url = `https://api.spotify.com/v1/albums/${albumId}`;
+  const albumFetch = fetch(url);
+
+  return albumFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching album failed');
+    }
+  })
+  .then(response => {
+    console.log(response);
+    return response;
+
+  })
+  .catch(error => {
+    console.log('Fetching data error:', error);
+  });
+
+};
+
+export const getAlbumTracks = (albumId) => {
+
+  const url = `https://api.spotify.com/v1/albums/${albumId}/tracks`;
+  const albumTracksFetch = fetch(url);
+
+  return albumTracksFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching album tracks failed');
+    }
+  })
+  .then(response => {
+    console.log(response);
+    return response;
+
+  })
+  .catch(error => {
+    console.log('Fetching data error:', error);
+  });
+
+};
+
 export const getAlbums = (artistId) => {
 
   const url = `https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&market=PL`;
@@ -50,7 +96,7 @@ export const getAlbums = (artistId) => {
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error('Fetching album failed');
+      throw new Error('Fetching albums failed');
     }
   })
   .then(response => {
