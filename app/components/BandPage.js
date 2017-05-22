@@ -1,5 +1,5 @@
 import React from 'react';
-import {getAlbums, getSimilarArtists, getTopTracs} from '../utils/api';
+import {getAlbums, getSimilarArtists, getTopTracs, getArtist} from '../utils/api';
 import BandAlbums from './BandAlbums';
 import BandTopTracks from './BandTopTracks';
 import BandOverview from './BandOverview';
@@ -12,6 +12,7 @@ class BandPage extends React.Component {
       albums: null,
       tracks: null,
       band: this.props.band,
+      id: this.props.band.id,
     };
   }
 
@@ -36,27 +37,67 @@ class BandPage extends React.Component {
       albums: null,
       similar: null,
       tracks: null,
+      id: null
     });
 
   }
+
+getArtstFromSimilarArtist = (artistId) => {
+    getArtist(artistId).then(data => {
+      this.setState({
+        albums: null,
+        similar: null,
+        tracks: null,
+        id: null
+      });
+
+      const topTracksPromise = getTopTracs(artistId).then(data => {
+
+        this.setState({
+          tracks: data,
+        });
+      });
+
+      const albumsPromise = getAlbums(artistId).then(data => {
+        this.setState({
+          albums: data,
+        });
+      });
+
+      this.setState({
+        band: data,
+        id: artistId,
+      });
+
+
+    })
+  };
+
+
+
 
   render() {
     const name = this.state.band.name;
     const image = this.state.band.images[0].url;
     const genres = this.state.band.genres;
+    const tracks = this.state.tracks;
+    const albums = this.state.albums;
+    const id = this.state.id;
 
     return (
       <div className='band-container' >
         <BandOverview name={name} image={image} genres={genres} />
 
         <h3>Top tracks</h3>
-        {!this.state.tracks ? null : <BandTopTracks tracks={this.state.tracks} />}
+        {!this.state.tracks ? null : <BandTopTracks tracks={tracks} />}
 
         <h3>Albums</h3>
-        {!this.state.albums ? null : <BandAlbums albums={this.state.albums} />}
+        {!this.state.albums ? null : <BandAlbums albums={albums} />}
 
         <h3>Want to hear something similar?</h3>
-        <SimilarArtists id={this.state.band.id}/>
+        <SimilarArtists
+          id={id}
+          getArtist={this.getArtstFromSimilarArtist}/>
       </div>
     );
   }

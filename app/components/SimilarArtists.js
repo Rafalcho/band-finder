@@ -20,6 +20,18 @@ class SimilarArtists extends React.Component {
       });
     };
 
+  handleClick = (id) => {
+
+    this.props.getArtist(id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      similarShown: false,
+      similar: null,
+    })
+  }
+
   render() {
     return (
       <div>
@@ -30,7 +42,8 @@ class SimilarArtists extends React.Component {
         <div className='albums-row'>
           {  !this.state.similar ? null : this.state.similar.map(artist => {
         return (
-          <div className='similar-artist' key={artist.id}>
+          <div className='similar-artist' key={artist.id}
+            onClick={() => this.handleClick(artist.id)}>
 
             <div className='similar-image'
               style={{backgroundImage: `url('${artist.images[1].url}')`}}></div>

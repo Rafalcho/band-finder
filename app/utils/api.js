@@ -22,7 +22,7 @@ export const artistSearch = (artist) => {
 };
 
 export const getArtist = (artistId) => {
-  const url = `https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF${artistId}`;
+  const url = `https://api.spotify.com/v1/artists/${artistId}`;
   const artistFetch = fetch(url);
 
   return artistFetch.then(response => {
@@ -33,8 +33,7 @@ export const getArtist = (artistId) => {
     }
   })
   .then(response => {
-    console.log(response.items);
-    return response.items;
+    return response;
 
   })
   .catch(error => {
