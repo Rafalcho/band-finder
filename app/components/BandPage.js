@@ -22,9 +22,8 @@ class BandPage extends React.Component {
 
   componentDidMount() {
     let artistName = this.props.location.search.slice(1);
-    console.log(artistName)
 
-    if (artistName === 'randomize') {
+    if (artistName === 'random-artist') {
       randomArtistSearch().then(
         data => {
           this.setState({

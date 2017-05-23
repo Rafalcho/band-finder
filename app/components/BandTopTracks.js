@@ -30,7 +30,6 @@ class BandTopTracks extends React.Component {
   }
 
   render() {
-    let number = 1;
     return (
       <ul className='top-tracks'>
       {  this.props.tracks.map((track, index) => {

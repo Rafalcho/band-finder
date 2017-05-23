@@ -1,8 +1,9 @@
 import React from 'react';
-import {getAlbumTracks, getAlbum} from '../utils/api';
+import {getAlbum} from '../utils/api';
 import queryString from 'query-string';
 import Loading from './Loading';
 import Nav from './Nav';
+import {Link} from 'react-router-dom';
 
 class Album extends React.Component {
   constructor(props) {
@@ -23,12 +24,6 @@ class Album extends React.Component {
       });
     });
 
-    const getTracksPromise = getAlbumTracks(albumId).then(data => {
-
-      this.setState({
-        tracks: data,
-      });
-    });
   }
 
   render() {
@@ -36,8 +31,37 @@ class Album extends React.Component {
       return (
         <div>
           <Nav />
-          <img src={this.state.album.images[1].url} />
-          <h1>{this.state.album.name}</h1>
+            <div className='album-container'>
+              <div className='album-top'>
+                <img src={this.state.album.images[1].url} />
+                <div className='album-info'>
+                  <h1>{this.state.album.name}</h1>
+                    <Link
+                      className='band-name'
+                      to={{
+                        pathname: '/band',
+                        search: this.state.album.artists[0].name
+                      }}
+                    ><h2>{this.state.album.artists[0].name}</h2></Link>
+                  <h3>{this.state.album.release_date.slice(0, 4)}</h3>
+                </div>
+
+              </div>
+                <h2 className='tracks'>Tracks</h2>
+
+                <ul className='top-tracks'>
+                {  this.state.album.tracks.items.map((track, index) => {
+                    return (
+                      <li key={track.id}>
+                        #{index + 1} { }
+                        {track.name}
+                        <audio id={track.id} src={track.preview_url} />
+                      </li>
+                    );
+
+                  })}
+                </ul>
+              </div>
         </div>
       );
     } else {

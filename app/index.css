@@ -6,6 +6,10 @@ body {
   font-family: 'Roboto', sans-serif;
   background-image: url('http://imageshack.com/a/img922/8061/Bzda3N.png')
 }
+a {
+  color: white;
+  text-decoration: none;
+}
 
 .container {
   max-width: 1200px;
@@ -58,8 +62,7 @@ body {
   padding: 10px 10px;
   font-size: 1rem;
   cursor: pointer;
-  color: white;
-  text-decoration: none;
+
 }
 
 .search-again:hover {
@@ -85,7 +88,7 @@ body {
   background-color: white;
 }
 
-.band-container {
+.band-container, .album-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -232,4 +235,23 @@ body {
   text-align: center;
   font-size: 50px;
 
+}
+
+.album-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.album-info {
+  margin-left: 50px;
+}
+
+.band-name:hover {
+  color: #D9042B;
+}
+
+.tracks {
+  font-size: 2.5rem;
+  margin-top: 50px;
 }

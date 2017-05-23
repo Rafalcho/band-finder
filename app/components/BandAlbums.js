@@ -39,21 +39,17 @@ handleClick = (id) => {
       {this.state.albumsToShow ? this.state.albumsToShow.map(album => {
 
         return (
-          <div
-            className='album-item'
-            key={album.id}
-            onClick={() => this.handleClick(album.id)}>
-            <img src={album.images[1].url} />
-            <p>{album.name}</p>
-              <Link
 
+              <Link
+                key={album.id}
                 className='album-item'
                 to={{
                   pathname: '/album',
                   search: album.id
                 }}
-              >Battle</Link>
-          </div>
+              ><img src={album.images[1].url} />
+            <p>{album.name}</p></Link>
+
         );
       }) : null}
 
