@@ -54,7 +54,6 @@ export const getAlbum = (albumId) => {
     }
   })
   .then(response => {
-    console.log(response);
     return response;
 
   })
@@ -77,7 +76,6 @@ export const getAlbumTracks = (albumId) => {
     }
   })
   .then(response => {
-    console.log(response);
     return response;
 
   })
@@ -174,4 +172,24 @@ export const randomArtistSearch = () => {
     console.log('Fetching data error:', error);
   });
 
+};
+
+export const getArtistsByGenre = (genre) => {
+  const url = `https://api.spotify.com/v1/search?q=genre%3A${genre}&type=artist&limit=50`;
+  const artistsByGenreFetch = fetch(url);
+
+  return artistsByGenreFetch.then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Fetching artists failed');
+    }
+  })
+  .then(response => {
+      return response.artists.items;
+
+    })
+  .catch(error => {
+      console.log('Fetching data error:', error);
+    });
 };

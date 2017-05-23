@@ -1,8 +1,16 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const BandOverview = (props) => {
   const genres = props.genres.map(genre => {
-    return <span key={genre} className='genre'>{genre}</span>;
+    return <Link
+      key={genre}
+      className='genre'
+      to={{
+        pathname: '/genre',
+        search: genre
+      }}
+    ><span>{genre}</span></Link>;
   });
   return (
     <div>
