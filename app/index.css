@@ -1,10 +1,12 @@
+
 body {
   margin: 0;
   padding: 0;
   color: white;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  background-image: url('http://imageshack.com/a/img922/8061/Bzda3N.png')
+  /*background-image: url('http://imageshack.com/a/img922/8061/Bzda3N.png')*/
+  background-image: url('./images/darth_stripe.png');
 }
 a {
   color: white;
@@ -21,7 +23,8 @@ a {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-image: url('https://static.pexels.com/photos/132836/pexels-photo-132836.jpeg');
+  background-image: url('./images/background.jpeg');
+  /*background-image: url('https://static.pexels.com/photos/132836/pexels-photo-132836.jpeg');*/
   background-position: center;
   background-size: cover;
 
@@ -44,6 +47,7 @@ a {
   border-radius: 20px;
   text-align: center;
   cursor: pointer;
+  transition: all 0.3s linear;
 }
 
 .search-button:hover {
@@ -59,6 +63,8 @@ a {
 }
 
 .search-again {
+  position: relative;
+  top: 5px;
   padding: 10px 10px;
   font-size: 1rem;
   cursor: pointer;
@@ -81,6 +87,7 @@ a {
   background-color: #D9042B;
   padding: 7px 10px;
   border-radius: 15px;
+  transition: all 0.3s linear;
 }
 
 .random-search:hover {
@@ -148,7 +155,7 @@ a {
 }
 
 .album-item img:hover {
-  border: 2px solid #D9042B;
+  border: 3px solid #D9042B;
 }
 .albums-section {
   display: flex;
@@ -174,6 +181,7 @@ a {
   text-align: center;
   margin: 5px;
   cursor: pointer;
+  max-width: 200px;
 }
 
 .similar-artist:hover {
@@ -187,10 +195,11 @@ a {
   height: 200px;
   border-radius: 50%;
   box-sizing: border-box;
+
 }
 
 .similar-image:hover {
-  border: 2px solid #D9042B;
+  border: 3px solid #D9042B;
 }
 
 .similar-artist img {
@@ -223,6 +232,7 @@ a {
   padding: 10px;
   color: white;
   margin: 5px;
+  transition: all 0.2s linear;
 }
 
 .genre:hover {
