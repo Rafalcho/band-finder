@@ -26,6 +26,7 @@ class Album extends React.Component {
 
   }
 
+
   render() {
     if (this.state.album) {
       return (
@@ -53,9 +54,10 @@ class Album extends React.Component {
                 {  this.state.album.tracks.items.map((track, index) => {
                     return (
                       <li key={track.id}>
+                        <a href={track.external_urls.spotify} target='_blank'>
                         #{index + 1} { }
                         {track.name}
-                        <audio id={track.id} src={track.preview_url} />
+                        </a>
                       </li>
                     );
 
