@@ -1,5 +1,5 @@
 import React from 'react';
-import {getSimilarArtists} from '../utils/api';
+import {getSimilarArtists, getArtist} from '../utils/api';
 
 class SimilarArtists extends React.Component {
   constructor(props) {

@@ -1,5 +1,8 @@
 import React from 'react';
 import {getAlbumTracks, getAlbum} from '../utils/api';
+import queryString from 'query-string';
+import Loading from './Loading';
+import Nav from './Nav';
 
 class Album extends React.Component {
   constructor(props) {
@@ -11,15 +14,16 @@ class Album extends React.Component {
   }
 
   componentDidMount() {
+    const albumId = this.props.location.search.slice(1);
 
-    const getAlbumPromise = getAlbum(this.props.id).then(data => {
+    const getAlbumPromise = getAlbum(albumId).then(data => {
 
       this.setState({
         album: data,
       });
     });
 
-    const getTracksPromise = getAlbumTracks(this.props.id).then(data => {
+    const getTracksPromise = getAlbumTracks(albumId).then(data => {
 
       this.setState({
         tracks: data,
@@ -28,12 +32,19 @@ class Album extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-
-      </div>
-    );
+    if (this.state.album) {
+      return (
+        <div>
+          <Nav />
+          <img src={this.state.album.images[1].url} />
+          <h1>{this.state.album.name}</h1>
+        </div>
+      );
+    } else {
+      return <Loading />;
+    }
   }
+
 }
 
 export default Album;

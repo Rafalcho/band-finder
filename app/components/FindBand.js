@@ -2,6 +2,7 @@ import React from 'react';
 import {artistSearch, randomArtistSearch} from '../utils/api';
 import BandPage from './BandPage';
 import Loading from './Loading';
+import {Link} from 'react-router-dom';
 
 
 class FindBand extends React.Component {
@@ -90,7 +91,14 @@ handleRandom = () => {
           <div onClick={this.handleRandom} className='random-search'>Search for a random artist</div>
         </div>
 
+        <Link
 
+          className='search-button'
+          to={{
+            pathname: '/band',
+            search: this.state.artist
+          }}
+        >Battle</Link>
 
       </div>}
 

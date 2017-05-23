@@ -1,5 +1,6 @@
 import React from 'react';
 import Album from './Album';
+import {Link} from 'react-router-dom';
 
 class BandAlbums extends React.Component {
   constructor(props) {
@@ -44,6 +45,14 @@ handleClick = (id) => {
             onClick={() => this.handleClick(album.id)}>
             <img src={album.images[1].url} />
             <p>{album.name}</p>
+              <Link
+
+                className='album-item'
+                to={{
+                  pathname: '/album',
+                  search: album.id
+                }}
+              >Battle</Link>
           </div>
         );
       }) : null}
