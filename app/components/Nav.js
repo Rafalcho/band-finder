@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom';
 
 export const Nav = () => {
   return (
-    <Link className='search-again' to='/' >Home</Link>);
+    <div className='search-again'>
+      <Link to='/' >Home</Link>
+    </div>
+    );
 };
 
 export default Nav;

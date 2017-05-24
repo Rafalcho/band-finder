@@ -26,13 +26,12 @@ class BandTopTracks extends React.Component {
         currentPlaying: currentAudio.id
       })
     }
-
   }
 
   render() {
     return (
       <ul className='top-tracks'>
-      {  this.props.tracks.map((track, index) => {
+      {this.props.tracks.map((track, index) => {
           return (
             <li key={track.id} onClick={this.handleClick}>
               #{index + 1} { }
@@ -40,7 +39,6 @@ class BandTopTracks extends React.Component {
               <audio id={track.id} src={track.preview_url} />
             </li>
           );
-
         })}
       </ul>
     );

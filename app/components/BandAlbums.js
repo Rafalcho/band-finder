@@ -31,15 +31,9 @@ handleClick = (id) => {
   render() {
     return (
       <div className='albums-section'>
-
-
-      <div className='albums-row'>
-
-
-      {this.state.albumsToShow ? this.state.albumsToShow.map(album => {
-
-        return (
-
+        <div className='albums-row'>
+          {this.state.albumsToShow ? this.state.albumsToShow.map(album => {
+            return (
               <Link
                 key={album.id}
                 className='album-item'
@@ -47,15 +41,15 @@ handleClick = (id) => {
                   pathname: '/album',
                   search: album.id
                 }}
-              ><img src={album.images[1].url} />
-            <p>{album.name}</p></Link>
+                ><img src={album.images[1].url} />
+              <p>{album.name}</p></Link>
 
         );
       }) : null}
 
-
       </div>
-      {this.state.index >= this.props.albums.length ? null : <div
+      {this.state.index >= this.props.albums.length ? null :
+        <div
         onClick={this.getMoreAlbums}
         className='show-more' >Show more albums</div>}
         {this.state.currentAlbum ? <Album id={this.state.currentAlbum} /> : null}

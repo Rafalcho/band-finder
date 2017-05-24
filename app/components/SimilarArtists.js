@@ -45,8 +45,10 @@ class SimilarArtists extends React.Component {
           <div className='similar-artist' key={artist.id}
             onClick={() => this.handleClick(artist.id)}>
 
-            <div className='similar-image'
-              style={{backgroundImage: `url('${artist.images[1].url}')`}}></div>
+            <div
+              className='similar-image'
+              style={{backgroundImage: `url('${artist.images[1].url}')`}}>
+            </div>
             <p>{artist.name}</p>
           </div>
         )

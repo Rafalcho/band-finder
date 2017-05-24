@@ -14,17 +14,13 @@ const BandOverview = (props) => {
   });
   return (
     <div>
-
       <div className='band-picture' style={{backgroundImage: `url(${props.image})`}}>
         <h2>{props.name}</h2>
       </div>
       <div className='genres'>
-
         {genres}
       </div>
-
     </div>
-
   );
 };
 

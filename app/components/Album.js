@@ -16,16 +16,12 @@ class Album extends React.Component {
 
   componentDidMount() {
     const albumId = this.props.location.search.slice(1);
-
     const getAlbumPromise = getAlbum(albumId).then(data => {
-
       this.setState({
         album: data,
       });
     });
-
   }
-
 
   render() {
     if (this.state.album) {
@@ -70,7 +66,6 @@ class Album extends React.Component {
       return <Loading />;
     }
   }
-
 }
 
 export default Album;

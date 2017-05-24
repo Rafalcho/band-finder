@@ -30,13 +30,17 @@ class Genre extends React.Component {
       return (
         <div>
           <Nav />
-
           <div className='genre-container'>
             <h1>Feel like listening to some {this.state.genre} ?</h1>
-
-
             <div className='albums-row'>
               {this.state.artists.map(artist => {
+                let imageURL = null;
+                if (artist.images[1].url) {
+                  imageURL = artist.images[1].url;
+                } else {
+                  imageURL = artist.images[0].url;
+                }
+
                 return (
                   <Link
                     className='similar-artist'
@@ -47,24 +51,19 @@ class Genre extends React.Component {
                     }}>
                     <div
                       className='similar-image'
-                      style={{backgroundImage: `url('${artist.images[1].url}')`}}>
-
+                      style={{backgroundImage: `url('${imageURL}')`}}>
                     </div>
                     <p>{artist.name}</p>
-
                   </Link>
                 );
               })}
             </div>
-
           </div>
-
         </div>
       );
     } else {
       return <Loading />;
     }
-
   }
 }
 

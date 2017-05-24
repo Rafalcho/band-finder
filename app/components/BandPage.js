@@ -1,5 +1,5 @@
 import React from 'react';
-import {getAlbums, getSimilarArtists, getTopTracs, randomArtistSearch, artistSearch, getArtist} from '../utils/api';
+import {getAlbums, getTopTracs, randomArtistSearch, artistSearch, getArtist} from '../utils/api';
 import BandAlbums from './BandAlbums';
 import BandTopTracks from './BandTopTracks';
 import BandOverview from './BandOverview';
@@ -21,7 +21,7 @@ class BandPage extends React.Component {
   }
 
   componentDidMount() {
-    let artistName = this.props.location.search.slice(1);
+    const artistName = this.props.location.search.slice(1);
 
     if (artistName === 'random-artist') {
       randomArtistSearch().then(
@@ -42,9 +42,6 @@ class BandPage extends React.Component {
         }
       )
     }
-
-
-
   }
 
   shouldComponentUpdate() {
@@ -73,7 +70,6 @@ componentDidUpdate(nextProps, nextState) {
   componentWillUnmount() {
     this.setState({
       albums: null,
-      similar: null,
       tracks: null,
       id: null
     });
@@ -84,7 +80,6 @@ getArtstFromSimilarArtist = (artistId) => {
     getArtist(artistId).then(data => {
       this.setState({
         albums: null,
-        similar: null,
         tracks: null,
         id: null
       });
@@ -111,9 +106,6 @@ getArtstFromSimilarArtist = (artistId) => {
     })
   };
 
-
-
-
   render() {
 
     if(this.state.band) {
@@ -125,27 +117,28 @@ getArtstFromSimilarArtist = (artistId) => {
       const id = this.state.id;
 
       return (
-      <div>
-        <Nav />
-        <div className='band-container' >
+        <div>
+          <Nav />
+          <div className='band-container' >
+            <BandOverview
+              name={name}
+              image={image}
+              genres={genres} />
 
-          <BandOverview name={name} image={image} genres={genres} />
+            <h3>Top tracks</h3>
+            {!this.state.tracks ? null : <BandTopTracks tracks={tracks} />}
 
-          <h3>Top tracks</h3>
-          {!this.state.tracks ? null : <BandTopTracks tracks={tracks} />}
+            <h3>Albums</h3>
+            {!this.state.albums ? null : <BandAlbums albums={albums} />}
 
-          <h3>Albums</h3>
-          {!this.state.albums ? null : <BandAlbums albums={albums} />}
-
-          <h3>Want to hear something similar?</h3>
-          <SimilarArtists
-            id={id}
-            getArtist={this.getArtstFromSimilarArtist}/>
+            <h3>Want to hear something similar?</h3>
+            <SimilarArtists
+              id={id}
+              getArtist={this.getArtstFromSimilarArtist}/>
+          </div>
         </div>
-      </div>
       )
     } else { return <Loading />}
-
   }
 }
 
