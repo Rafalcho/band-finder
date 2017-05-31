@@ -4,6 +4,7 @@ import ReactRouter, {BrowserRouter as Router, Route, Switch} from 'react-router-
 import BandPage from './BandPage';
 import Album from './Album';
 import Genre from './Genre';
+import Authorize from './Authorize';
 
 class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Route  path='/band' component={BandPage} />
             <Route path='/album' component={Album} />
             <Route path='/genre' component={Genre} />
+            <Route path='/authorize' component={Authorize} />
             <Route render={() => <p>Not Found</p>} />
           </Switch>
         </div>
