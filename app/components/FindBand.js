@@ -1,6 +1,7 @@
 import React from 'react';
 import BandPage from './BandPage';
 import {Link} from 'react-router-dom';
+import {getToken} from '../utils/api';
 
 class FindBand extends React.Component {
   constructor(props) {
@@ -16,6 +17,13 @@ class FindBand extends React.Component {
     });
 
   };
+
+  componentDidMount() {
+    const accessURL = window.location.hash.slice(14,window.location.hash.length -34 );
+    if(accessURL) {
+      getToken(accessURL);
+
+  }}
 
   render() {
     return (

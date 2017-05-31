@@ -1,12 +1,24 @@
+let accessToken = null;
+let headers =  {
+      'Authorization': 'Bearer ' + accessToken
+    };
+
+export const getToken = (token) => {
+  accessToken = token;
+  headers.Authorization = 'Bearer ' + accessToken;
+};
+
 export const artistSearch = (artist) => {
 
   const url = `https://api.spotify.com/v1/search?q=${artist}&type=artist`;
-  const searchFetch = fetch(url);
+  const searchFetch = fetch(url, {
+    headers: headers});
 
   return searchFetch.then(response => {
     if (response.ok) {
       return response.json();
     } else {
+
       throw new Error('Fetching artist failed');
     }
   })
@@ -23,7 +35,8 @@ export const artistSearch = (artist) => {
 
 export const getArtist = (artistId) => {
   const url = `https://api.spotify.com/v1/artists/${artistId}`;
-  const artistFetch = fetch(url);
+  const artistFetch = fetch(url, {
+    headers: headers});
 
   return artistFetch.then(response => {
     if (response.ok) {
@@ -44,7 +57,8 @@ export const getArtist = (artistId) => {
 export const getAlbum = (albumId) => {
 
   const url = `https://api.spotify.com/v1/albums/${albumId}`;
-  const albumFetch = fetch(url);
+  const albumFetch = fetch(url, {
+    headers: headers});
 
   return albumFetch.then(response => {
     if (response.ok) {
@@ -66,7 +80,8 @@ export const getAlbum = (albumId) => {
 export const getAlbumTracks = (albumId) => {
 
   const url = `https://api.spotify.com/v1/albums/${albumId}/tracks`;
-  const albumTracksFetch = fetch(url);
+  const albumTracksFetch = fetch(url, {
+    headers: headers});
 
   return albumTracksFetch.then(response => {
     if (response.ok) {
@@ -88,7 +103,8 @@ export const getAlbumTracks = (albumId) => {
 export const getAlbums = (artistId) => {
 
   const url = `https://api.spotify.com/v1/artists/${artistId}/albums?album_type=album&market=PL`;
-  const albumsFetch = fetch(url);
+  const albumsFetch = fetch(url, {
+    headers: headers});
 
   return albumsFetch.then(response => {
     if (response.ok) {
@@ -110,7 +126,8 @@ export const getAlbums = (artistId) => {
 
 export const getSimilarArtists = (artistId) => {
   const url = `https://api.spotify.com/v1/artists/${artistId}/related-artists`;
-  const similarFetch = fetch(url);
+  const similarFetch = fetch(url, {
+    headers: headers});
 
   return similarFetch.then(response => {
     if (response.ok) {
@@ -131,7 +148,8 @@ export const getSimilarArtists = (artistId) => {
 
 export const getTopTracs = (artistId) => {
   const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`;
-  const topTracksFetch = fetch(url);
+  const topTracksFetch = fetch(url, {
+    headers: headers});
 
   return topTracksFetch.then(response => {
     if (response.ok) {
@@ -155,7 +173,8 @@ export const randomArtistSearch = () => {
   const offset = Math.floor(Math.random() * (100 - 1 + 1) + 1);
 
   const url = `https://api.spotify.com/v1/search?q=year:${year}&type=artist&limit=1&offset=${offset}`;
-  const searchFetch = fetch(url);
+  const searchFetch = fetch(url, {
+    headers: headers});
 
   return searchFetch.then(response => {
     if (response.ok) {
@@ -176,7 +195,8 @@ export const randomArtistSearch = () => {
 
 export const getArtistsByGenre = (genre) => {
   const url = `https://api.spotify.com/v1/search?q=genre%3A${genre}&type=artist&limit=50`;
-  const artistsByGenreFetch = fetch(url);
+  const artistsByGenreFetch = fetch(url, {
+    headers: headers});
 
   return artistsByGenreFetch.then(response => {
     if (response.ok) {
