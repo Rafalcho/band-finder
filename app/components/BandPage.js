@@ -32,7 +32,7 @@ class BandPage extends React.Component {
           })
         }
       ).catch(error => {
-        window.location.replace('https://accounts.spotify.com/authorize/?client_id=e2fe7bcb53c2443e96e7a4df25b309ed&response_type=token&redirect_uri=http://localhost:8080/&scope=user-read-private%20user-read-email');
+        window.location.replace('https://accounts.spotify.com/authorize/?client_id=e2fe7bcb53c2443e96e7a4df25b309ed&response_type=token&redirect_uri=https://band-finder-7a22c.firebaseapp.com/&scope=user-read-private%20user-read-email');
       })
     } else {
       const artistResponse = artistSearch(artistName).then(
@@ -43,7 +43,7 @@ class BandPage extends React.Component {
           })
         }
       ).catch(error => {
-        window.location.replace('https://accounts.spotify.com/authorize/?client_id=e2fe7bcb53c2443e96e7a4df25b309ed&response_type=token&redirect_uri=http://localhost:8080/&scope=user-read-private%20user-read-email');
+        window.location.replace('https://accounts.spotify.com/authorize/?client_id=e2fe7bcb53c2443e96e7a4df25b309ed&response_type=token&redirect_uri=https://band-finder-7a22c.firebaseapp.com/&scope=user-read-private%20user-read-email');
       })
     }
   }
